@@ -14,8 +14,8 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <cucumber.version>7.14.0</cucumber.version>
-        <maven.compiler.version>3.8.1</maven.compiler.version>
-        <maven.surefire.version>2.22.2</maven.surefire.version>
+        <maven.compiler.version>3.13.0</maven.compiler.version>
+        <maven.surefire.version>3.3.1</maven.surefire.version>
         <allure.version>2.24.0</allure.version>
     </properties>
 
@@ -146,6 +146,16 @@
                 </dependencies>
                 <configuration>
                     <skipTests>false</skipTests>
+
+                    <rerunFailingTestsCount>2</rerunFailingTestsCount>
+                    <properties>
+                        <!-- Work around. Surefire does not include enough
+                             information to disambiguate between different
+                             examples and scenarios. -->
+                        <configurationParameters>
+                            cucumber.junit-platform.naming-strategy=long
+                        </configurationParameters>
+                    </properties>
                 </configuration>
             </plugin>
 
