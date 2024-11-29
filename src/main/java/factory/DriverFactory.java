@@ -8,10 +8,9 @@ public class DriverFactory {
     public static BrowserContext context;
     public static Page page;
 
-    public static ThreadLocal<Page> threadLocalDriver = new ThreadLocal<>(); //For Parallel execution
+    public static ThreadLocal<Page> threadLocalDriver = new ThreadLocal<>();
     public static ThreadLocal<BrowserContext> threadLocalContext = new ThreadLocal<>();
 
-    //Launches Browser as set by user in config file
     public Page initDriver(String browserName) {
         BrowserType browserType = null;
         boolean headless = Boolean.valueOf(WebActions.getProperty("headless"));
@@ -31,7 +30,6 @@ public class DriverFactory {
         }
         if (browserType == null) throw new IllegalArgumentException("Could not Launch Browser for type" + browserType);
         context = browser.newContext();
-        //Below line is used to start the trace file
         context.tracing().start(new Tracing.StartOptions().setScreenshots(true).setSnapshots(true).setSources(false));
         page = context.newPage();
         threadLocalDriver.set(page);
@@ -40,11 +38,11 @@ public class DriverFactory {
     }
 
     public static synchronized Page getPage() {
-        return threadLocalDriver.get(); // Will return Initialized Thread Local Driver
+        return threadLocalDriver.get();
     }
 
     public static synchronized BrowserContext getContext() {
-        return threadLocalContext.get(); // Will return Initialized Thread Local Context
+        return threadLocalContext.get();
     }
 
 }

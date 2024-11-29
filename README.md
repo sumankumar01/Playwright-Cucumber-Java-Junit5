@@ -2,9 +2,9 @@
 
 
 ## Prerequisite
-## JAVA
-## PlayWright
-## Cucumber
-## Extent Report
-## Allure Report
-## Selenium Grid/Hub
+ JAVA,
+ PlayWright,
+ Cucumber,
+ Extent Report,
+ Allure Report,
+ Selenium Grid/Hub,
