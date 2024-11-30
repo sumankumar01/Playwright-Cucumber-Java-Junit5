@@ -14,12 +14,18 @@ public class Hooks {
     public DriverFactory driverFactory;
     public Page page;
 
-    @Before
+    @Before(order=0)
     public void launchBrowser() {
         String browserName = WebActions.getProperty("browser");  //Fetching browser value from config file
         driverFactory = new DriverFactory();
         page = driverFactory.initDriver(browserName); // Passing browser name to launch the browser
     }
+   /* @Before(order=1)
+    public void launchSecondBrowser02() {
+        String browserName = WebActions.getProperty("browser2");  //Fetching browser value from config file
+        driverFactory = new DriverFactory();
+        page = driverFactory.initDriver(browserName); // Passing browser name to launch the browser
+    }*/
 
     //After runs in reverse order so order=1 will run first
     @After(order = 0)
